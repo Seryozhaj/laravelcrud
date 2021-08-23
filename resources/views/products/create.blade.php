@@ -27,7 +27,7 @@
                 <label for="product-url">Url</label>
                 <textarea name='url' class="form-control" id="product-url" rows="3">{{ old('url') }}</textarea>
                 </div>
-                <button type="submite" class="btn btn-success">Create Product</button>
+                <button type="submite" class="btn btn-success">Add Product</button>
         </form>
     </div>
 </div>

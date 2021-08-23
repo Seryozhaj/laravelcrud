@@ -50,7 +50,8 @@ class ProductController extends Controller
         ]);
 
         $product->save();
-        return redirect('/products')->with('success', 'created');
+        
+        return redirect('/products')->with('success', 'The product has been added');
     }
 
     /**
@@ -59,10 +60,8 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product  $product)
     {
-        $product = Product::find($id);
-
         return view('products.show', compact('product'));
     }
 
@@ -72,11 +71,8 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product  $product)
     {
-
-        $product = Product::find($id);
-
         return view('products.edit', compact('product'));
     }
 
@@ -87,19 +83,18 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product  $product)
     {
         $request->validate([
             'title' => 'required|string|min:5',
             'url'   => 'required|string|max:50'
         ]);
 
-        $product = Product::find($id);
         $product->title = $request->get('title');
         $product->url   = $request->get('url');
         $product->save();
 
-        return redirect('/products')->with('success', 'Product update');
+        return redirect('/products')->with('success', 'The product has been updated');
     }
 
     /**
@@ -108,11 +103,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product  $product)
     {
-        $product = Product::find($id);
         $product->delete();
-        
-        return redirect('/products')->with('success', 'Product deleted !');
+
+        return redirect('/products')->with('success', 'The item has been deleted');
     }   
 }

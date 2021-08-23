@@ -30,22 +30,16 @@
 			<td>{{ $product->url }}</td>
 			<td class="table-buttons">
 				<a href="{{ route('products.show', $product) }}" class="btn btn-success">
-					<i class="material-icons-outlined">
-						visibility
-					</i>
+					<i class="material-icons">visibility</i>
 				</a>
 				<a href="{{ route('products.edit', $product) }}" class="btn btn-primary">
-					<i class="material-icons-outlined">
-						edit
-					</i>
+					<i class="material-icons">edit</i>
 				</a>
 				<form method="POST" action="{{ route('products.destroy', $product) }}">
 					@csrf
 					@method('DELETE')
 					<button type="submit" class="btn btn-danger">
-						<i class="material-icons-outlined">
-							delete
-						</i>
+						<i class="material-icons">delete</i>
 					</button>
 				</form>
 	 		</td>
