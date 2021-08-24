@@ -48,4 +48,7 @@
 	  </tr>
 	</tbody>
   </table>
+
+  {{ $products->links()}}
+  
 @endsection
