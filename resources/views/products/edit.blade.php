@@ -25,10 +25,20 @@
                     <input type="text" name='title' value=" {{ $product->title }}" class="form-control" id='product-title'>
                 </div>
                 <div class="form-group">
-                <label for="product-url">Url</label>
-                <textarea name='url' class="form-control" id="product-url" rows="3">{{ $product->url }}</textarea>
+                    <label for="product-url">Url</label>
+                    <textarea name='url' class="form-control" id="product-url" rows="3">{{ $product->url }}</textarea>
                 </div>
-                <button type="submite" class="btn btn-success">Update Product</button>
+                <div class="form-group">
+                      <label for="inputGroupSelect01">Tag</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="inputGroupSelect01">
+                            @foreach($tags as $key => $value)
+                                <option>{{ $value->title }}</option>
+                            @endforeach
+                        </select>
+                      </div>
+                </div>
+            <button type="submite" class="btn btn-success">Update Product</button>
         </form>
     </div>
 </div>

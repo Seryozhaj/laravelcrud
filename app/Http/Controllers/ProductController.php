@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Tag;
 use Illuminate\Http\Request;
 
 
@@ -28,7 +29,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $tags = Tag::all();
+        return view('products.create', ['tags' => $tags]);
+        // return view('products.create');
     }
 
     /**
@@ -73,7 +76,10 @@ class ProductController extends Controller
      */
     public function edit(Product  $product)
     {
-        return view('products.edit', compact('product'));
+
+        $tags = Tag::all();
+        return view('products.edit', compact('product'),  ['tags' => $tags]);
+        // return view('products.edit', compact('product'));
     }
 
     /**

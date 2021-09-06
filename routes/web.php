@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::resource('products', 'ProductController');
+Route::resource('tags', 'TagController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

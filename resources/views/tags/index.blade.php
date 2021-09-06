@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'All Products')
+@section('title', 'All Tags')
 
 
 @section('content')
 
-<a href="{{ route('products.create') }}" class="btn btn-success">Create Product</a>
+<a href="{{ route('tags.create') }}" class="btn btn-success">Create Tag</a>
 
 @if (session()->get('success'))
 	<div class="alert alert-success mt-3">
@@ -19,25 +19,23 @@
 		<th scope="col">#</th>
 		<th scope="col">Title</th>
 		<th scope="col">Url</th>
-		<th scope="col">Tag</th>
 		<th></th>
 	  </tr>
 	</thead>
 	<tbody>
-		@foreach ($products as $product)
+		@foreach ($tags as $tag)
 	 	<tr>
-			<th scope="row">{{ $product->id }}</th>
-			<td>{{ $product->title }}</td>
-			<td>{{ $product->url }}</td>
-			{{-- <td>{{ $product->tag }}</td> --}}
+			<th scope="row">{{ $tag->id }}</th>
+			<td>{{ $tag->title }}</td>
+			<td>{{ $tag->url }}</td>
 			<td class="table-buttons">
-				<a href="{{ route('products.show', $product) }}" class="btn btn-success">
+				<a href="{{ route('tags.show', $tag) }}" class="btn btn-success">
 					<i class="material-icons">visibility</i>
 				</a>
-				<a href="{{ route('products.edit', $product) }}" class="btn btn-primary">
+				<a href="{{ route('tags.edit', $tag) }}" class="btn btn-primary">
 					<i class="material-icons">edit</i>
 				</a>
-				<form method="POST" action="{{ route('products.destroy', $product) }}">
+				<form method="POST" action="{{ route('tags.destroy', $tag) }}">
 					@csrf
 					@method('DELETE')
 					<button type="submit" class="btn btn-danger">
@@ -51,6 +49,6 @@
 	</tbody>
   </table>
 
-  {{ $products->links()}}
+  {{ $tags->links()}}
   
 @endsection

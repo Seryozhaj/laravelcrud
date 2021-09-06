@@ -7,9 +7,10 @@
 
 <div class="card">
     <div class="card-body">
-      <h3>{{ $product->title }}</h3>
-      <p>{{ $product->url }}</p>
+      <h3>Title : {{ $product->title }}</h3>
+      <p>Url : {{ $product->url }}</p>
+      <p>Tag : {{ $product->tag }}</p>
     </div>
-  </div>
+</div>
 
 @endsection
