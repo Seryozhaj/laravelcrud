@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('home', ['users' => $users]);
+        $user = auth()->user();
+        return view('home', ['user' => $user]);
     }
 }

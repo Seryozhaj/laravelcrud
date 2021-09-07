@@ -29,7 +29,7 @@
 			<th scope="row">{{ $product->id }}</th>
 			<td>{{ $product->title }}</td>
 			<td>{{ $product->url }}</td>
-			{{-- <td>{{ $product->tag }}</td> --}}
+			<td>{{ $product->tags->pluck('title')->join(', ') }}</td>
 			<td class="table-buttons">
 				<a href="{{ route('products.show', $product) }}" class="btn btn-success">
 					<i class="material-icons">visibility</i>

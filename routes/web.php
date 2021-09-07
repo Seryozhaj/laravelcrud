@@ -11,14 +11,20 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('products', 'ProductController');
-Route::resource('tags', 'TagController');
-Auth::routes();
-
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/verified', 'VerifiedController@index')->name('verified');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('products', 'ProductController');
+    Route::resource('tags', 'TagController');
+});

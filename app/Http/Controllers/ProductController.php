@@ -31,7 +31,6 @@ class ProductController extends Controller
     {
         $tags = Tag::all();
         return view('products.create', ['tags' => $tags]);
-        // return view('products.create');
     }
 
     /**
@@ -47,13 +46,14 @@ class ProductController extends Controller
             'url'   => 'required|string|max:50'
         ]);
 
-        $product = new Product([
-            'title' => $request->get('title'),
-            'url'   => $request->get('url')
+        $product = Product::create([
+            'user_id'   => auth()->user()->id,
+            'title'     => $request->get('title'),
+            'url'       => $request->get('url')
         ]);
 
-        $product->save();
-        
+        $product->tags()->attach($request->tags);
+
         return redirect('/products')->with('success', 'The product has been added');
     }
 
@@ -79,7 +79,6 @@ class ProductController extends Controller
 
         $tags = Tag::all();
         return view('products.edit', compact('product'),  ['tags' => $tags]);
-        // return view('products.edit', compact('product'));
     }
 
     /**
@@ -92,12 +91,15 @@ class ProductController extends Controller
     public function update(Request $request, Product  $product)
     {
         $request->validate([
-            'title' => 'required|string|min:5',
-            'url'   => 'required|string|max:50'
+            'title'     => 'required|string|min:5',
+            'url'       => 'required|string|max:50'
         ]);
 
         $product->title = $request->get('title');
         $product->url   = $request->get('url');
+        $product->tags()->detach();
+        $product->tags()->attach($request->tags);
+        
         $product->save();
 
         return redirect('/products')->with('success', 'The product has been updated');

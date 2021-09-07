@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                     <td>{{ $user->name }}</td>
+                     <td>Dear {{ $user->name }},You have passed the verification.</td>
                 </div>
             </div>
         </div>

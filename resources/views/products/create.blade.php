@@ -30,9 +30,9 @@
                 <div class="form-group">
                     <label for="inputGroupSelect01">Tag</label>
                   <div class="input-group mb-3">
-                      <select class="custom-select" id="inputGroupSelect01">
-                        @foreach($tags as $key => $value)
-                            <option>{{ $value->title }}</option>
+                      <select multiple class="custom-select" id="inputGroupSelect01" name="tags[]">
+                        @foreach($tags as $tag)
+                            <option value='{{ $tag->id }}'>{{ $tag->title }}</option>
                         @endforeach
                       </select>
                     </div>
