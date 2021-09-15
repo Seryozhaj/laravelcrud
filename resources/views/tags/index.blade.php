@@ -18,7 +18,6 @@
 	  <tr>
 		<th scope="col">#</th>
 		<th scope="col">Title</th>
-		<th scope="col">Url</th>
 		<th></th>
 	  </tr>
 	</thead>
@@ -27,7 +26,6 @@
 	 	<tr>
 			<th scope="row">{{ $tag->id }}</th>
 			<td>{{ $tag->title }}</td>
-			<td>{{ $tag->url }}</td>
 			<td class="table-buttons">
 				<a href="{{ route('tags.show', $tag) }}" class="btn btn-success">
 					<i class="material-icons">visibility</i>

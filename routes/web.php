@@ -1,5 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\VerifiedController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,8 +19,6 @@
 |
 */
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
@@ -20,11 +26,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/verified', 'VerifiedController@index')->name('verified');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/home',  [HomeController::class, 'index'])->name('home');
+Route::get('/verified',[VerifiedController::class, 'index'])->name('verified');
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::resource('products', 'ProductController');
-    Route::resource('tags', 'TagController');
+    Route::resource('products', ProductController::class);
+    Route::resource('tags', TagController::class);
 });

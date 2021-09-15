@@ -1,6 +1,6 @@
 <?php
 
-use App\Tag;
+use App\Models\Tag as ModelsTag;
 use Illuminate\Database\Seeder;
 
 class TagsTableSeeder extends Seeder
@@ -12,7 +12,7 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        Tag::create([
+        ModelsTag::create([
             'title' => 'Test tag',
         ]);
     }
